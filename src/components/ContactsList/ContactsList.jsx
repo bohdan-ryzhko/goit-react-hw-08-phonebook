@@ -1,7 +1,7 @@
 import { useAuth } from "hooks/useAuth"
 import { useDispatch } from "react-redux";
 import { deleteContact } from "redux/contacts/operations";
-
+import { CiCircleRemove } from 'react-icons/ci';
 
 export const ContactsList = () => {
 	const { contacts } = useAuth();
@@ -22,8 +22,9 @@ export const ContactsList = () => {
 								<p>{contact.name}</p>
 								<p>{contact.number}</p>
 								<button
-									onClick={() => handleDeleteContact(contact.id)}
-								>X</button>
+									onClick={() => handleDeleteContact(contact.id)}>
+									<CiCircleRemove size={30} />
+								</button>
 							</li>
 						)
 					}
