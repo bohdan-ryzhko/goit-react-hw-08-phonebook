@@ -1,3 +1,4 @@
+import sass from "./UserMenu.module.scss";
 import { Button } from "@mui/material";
 import { useAuth } from "hooks/useAuth";
 import { useDispatch } from "react-redux"
@@ -8,7 +9,7 @@ export const UserMenu = () => {
 	const { user } = useAuth();
 
 	return (
-		<div>
+		<div className={sass.UserMenu}>
 			<p>Welcome, {user.name}</p>
 			<Button type="button" onClick={() => dispatch(logOut())}>
 				Logout

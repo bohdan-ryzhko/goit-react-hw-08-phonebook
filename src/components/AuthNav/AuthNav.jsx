@@ -1,8 +1,9 @@
-import { NavLink } from "react-router-dom"
+import sass from "./AuthNav.module.scss";
+import { NavLink } from "react-router-dom";
 
 export const AuthNav = () => {
 	return (
-		<div>
+		<div className={sass.AuthNav}>
 			<NavLink to="/register">Register</NavLink>
 			<NavLink to="/login">Log In</NavLink>
 		</div>

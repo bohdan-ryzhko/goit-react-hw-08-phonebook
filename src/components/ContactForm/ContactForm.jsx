@@ -1,22 +1,22 @@
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { registerUser } from "redux/auth/operations";
 import { Input, FormLabel, FormGroup, Button } from '@mui/material';
+import { createContact } from "redux/contacts/operations";
 
 const required = { required: true };
 
-export const RegisterForm = () => {
+export const ContactForm = () => {
+
 	const dispatch = useDispatch();
 	const { control, reset, handleSubmit, formState: { errors } } = useForm();
 
-	const onSubmit = data => {
-		console.log(data);
-		dispatch(registerUser(data));
+	const onSubmit = (data) => {
+		dispatch(createContact(data));
 		reset();
-	};
+	}
 
 	return (
-			<form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+		<form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
 				<FormGroup>
 					<FormLabel>
 						<Controller
@@ -31,40 +31,25 @@ export const RegisterForm = () => {
 									{...field}
 								/>}
 						/>
-						{errors.name && <span>This field is required</span>}
-					</FormLabel>
-					<FormLabel>
-						<Controller
-							defaultValue=""
-							name="email"
-							control={control}
-							rules={required}
-							render={({ field }) =>
-								<Input
-									type="email"
-									placeholder="Email"
-									{...field}
-								/>}
-						/>
 						{errors.email && <span>This field is required</span>}
 					</FormLabel>
 					<FormLabel>
 						<Controller
 							defaultValue=""
-							name="password"
+							name="number"
 							control={control}
 							rules={required}
 							render={({ field }) =>
 								<Input
-									type="password"
-									placeholder="Password"
+									type="text"
+									placeholder="Phone"
 									{...field}
 								/>}
 						/>
 						{errors.password && <span>This field is required</span>}
 					</FormLabel>
 				</FormGroup>
-				<Button type="submit">Register</Button>
+				<Button type="submit">Add Contact</Button>
 			</form>
 	)
 }

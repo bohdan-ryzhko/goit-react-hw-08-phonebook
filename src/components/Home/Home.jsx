@@ -1,7 +1,11 @@
+import { Container } from "components/Container/Container";
+
 export const Home = () => {
 	return (
 		<main className="">
-			<h1>Home</h1>
+			<Container>
+				<h1>Home</h1>
+			</Container>
 		</main>
 	)
 }
