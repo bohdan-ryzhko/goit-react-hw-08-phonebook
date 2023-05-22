@@ -1,6 +1,5 @@
 import { AppBar } from "./AppBar/AppBar";
 import { useDispatch } from "react-redux";
-import { useAuth } from "hooks/useAuth";
 import { Route, Routes } from "react-router-dom";
 import { Register } from "pages/Register/Register";
 // import { Layout } from "pages/Layout";
