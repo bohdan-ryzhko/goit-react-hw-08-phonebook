@@ -2,7 +2,6 @@ import { AppBar } from "./AppBar/AppBar";
 import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { Register } from "pages/Register/Register";
-// import { Layout } from "pages/Layout";
 import { Home } from "./Home/Home";
 import { Login } from "pages/Login/Login";
 import { useEffect } from "react";
@@ -26,7 +25,7 @@ export const App = () => {
         <Route
           path="/register"
           element={
-            <RestrictedRoute redirectTo="/tasks" component={<Register />} />
+            <RestrictedRoute redirectTo="/contacts" component={<Register />} />
           }
         />
         <Route
