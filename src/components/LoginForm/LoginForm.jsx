@@ -1,8 +1,10 @@
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { logIn } from "redux/auth/operations";
-import { Input, FormLabel, FormGroup, Button } from '@mui/material';
-import { groupStyles, inpitStyles, stylesButton, form } from "constants/formStyles";
+import { FormLabel, FormGroup, Button } from '@mui/material';
+import { groupStyles, stylesButton, form } from "constants/formStyles";
+import { CustomInput } from "components/CustomInput/CustomInput";
+import { ErrorText } from "components/ErrorText/ErrorText";
 
 const required = { required: true };
 
@@ -15,6 +17,10 @@ export const LoginForm = () => {
 		reset();
 	};
 
+	console.log(errors)
+
+	const isDisabled = Object.keys(errors).length > 0;
+
 	return (
 		<form style={form} onSubmit={handleSubmit(onSubmit)} autoComplete="off">
 			<FormGroup sx={groupStyles}>
@@ -25,14 +31,10 @@ export const LoginForm = () => {
 						control={control}
 						rules={required}
 						render={({ field }) =>
-							<Input
-								sx={inpitStyles}
-								type="email"
-								placeholder="Email"
-								{...field}
-							/>}
+							<CustomInput error={errors.email ? true : false} label="Email" type="email" field={field} />
+						}
 					/>
-					{errors.email && <span>This field is required</span>}
+					{errors.email && <ErrorText text="Email field is required" />}
 				</FormLabel>
 				<FormLabel>
 					<Controller
@@ -41,17 +43,13 @@ export const LoginForm = () => {
 						control={control}
 						rules={required}
 						render={({ field }) =>
-							<Input
-								sx={inpitStyles}
-								type="password"
-								placeholder="Password"
-								{...field}
-							/>}
+							<CustomInput error={errors.password ? true : false} label="Password" type="password" field={field} />
+						}
 					/>
-					{errors.password && <span>This field is required</span>}
+					{errors.password && <ErrorText text="Password field is required" />}
 				</FormLabel>
 			</FormGroup>
-			<Button sx={stylesButton} type="submit">Log In</Button>
+			<Button disabled={isDisabled} sx={stylesButton} type="submit">Log In</Button>
 		</form>
 	)
 }

@@ -2,10 +2,9 @@ import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { registerUser } from "redux/auth/operations";
 import { FormLabel, FormGroup, Button } from '@mui/material';
-import { groupStyles, stylesButton, form, stylesButtonDisabled } from "constants/formStyles";
+import { groupStyles, stylesButton, form } from "constants/formStyles";
 import { CustomInput } from "components/CustomInput/CustomInput";
 import { ErrorText } from "components/ErrorText/ErrorText";
-import { useState } from "react";
 
 const required = { required: true };
 

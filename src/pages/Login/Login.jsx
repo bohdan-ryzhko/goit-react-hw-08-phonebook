@@ -1,11 +1,12 @@
 import { Container } from "components/Container/Container"
 import { LoginForm } from "components/LoginForm/LoginForm"
+import { Title } from "components/Title/Title"
 
 export const Login = () => {
 	return (
 		<div>
 			<Container>
-				<h2>Login</h2>
+				<Title title="Login" />
 				<LoginForm />
 			</Container>
 		</div>
