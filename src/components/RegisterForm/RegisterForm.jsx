@@ -1,7 +1,11 @@
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { registerUser } from "redux/auth/operations";
-import { Input, FormLabel, FormGroup, Button } from '@mui/material';
+import { FormLabel, FormGroup, Button } from '@mui/material';
+import { groupStyles, stylesButton, form, stylesButtonDisabled } from "constants/formStyles";
+import { CustomInput } from "components/CustomInput/CustomInput";
+import { ErrorText } from "components/ErrorText/ErrorText";
+import { useState } from "react";
 
 const required = { required: true };
 
@@ -15,9 +19,11 @@ export const RegisterForm = () => {
 		reset();
 	};
 
+	const isDisabled = Object.keys(errors).length > 0;
+
 	return (
-			<form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-				<FormGroup>
+			<form style={form} onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+				<FormGroup sx={groupStyles}>
 					<FormLabel>
 						<Controller
 							defaultValue=""
@@ -25,13 +31,10 @@ export const RegisterForm = () => {
 							control={control}
 							rules={required}
 							render={({ field }) =>
-								<Input
-									type="text"
-									placeholder="Name"
-									{...field}
-								/>}
+								<CustomInput error={errors.name ? true : false} label="Name" type="text" field={field} />
+							}
 						/>
-						{errors.name && <span>This field is required</span>}
+						{errors.name && <ErrorText text="Name field is required" />}
 					</FormLabel>
 					<FormLabel>
 						<Controller
@@ -40,13 +43,10 @@ export const RegisterForm = () => {
 							control={control}
 							rules={required}
 							render={({ field }) =>
-								<Input
-									type="email"
-									placeholder="Email"
-									{...field}
-								/>}
+								<CustomInput error={errors.email ? true : false} label="Email" type="email" field={field} />
+							}
 						/>
-						{errors.email && <span>This field is required</span>}
+						{errors.email && <ErrorText text="Email field is required"/>}
 					</FormLabel>
 					<FormLabel>
 						<Controller
@@ -55,16 +55,13 @@ export const RegisterForm = () => {
 							control={control}
 							rules={required}
 							render={({ field }) =>
-								<Input
-									type="password"
-									placeholder="Password"
-									{...field}
-								/>}
+								<CustomInput error={errors.password ? true : false} label="Password" type="password" field={field} />
+							}
 						/>
-						{errors.password && <span>This field is required</span>}
+						{errors.password && <ErrorText text="Password field is required"/>}
 					</FormLabel>
 				</FormGroup>
-				<Button type="submit">Register</Button>
+				<Button disabled={isDisabled} sx={stylesButton} type="submit">Register</Button>
 			</form>
 	)
 }

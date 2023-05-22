@@ -2,6 +2,11 @@ import { useAuth } from "hooks/useAuth"
 import { useDispatch } from "react-redux";
 import { deleteContact } from "redux/contacts/operations";
 import { CiCircleRemove } from 'react-icons/ci';
+import { List, ListItem, Button, Typography } from '@mui/material';
+
+const contactStyles = {
+	flexBasis: "100%"
+}
 
 export const ContactsList = () => {
 	const { contacts } = useAuth();
@@ -15,20 +20,21 @@ export const ContactsList = () => {
 		<>
 			{
 				contacts.length > 0 &&
-				<ul>
+				<List sx={{ display: "flex", flexDirection: "column", gap:"10px" }}>
 					{
 						contacts.map(contact =>
-							<li key={contact.id}>
-								<p>{contact.name}</p>
-								<p>{contact.number}</p>
-								<button
+							<ListItem sx={{ border: "1px solid #1976d2", borderRadius: "10px" }} key={contact.id}>
+								<Typography sx={contactStyles}>{contact.name}</Typography>
+								<Typography sx={contactStyles}>{contact.number}</Typography>
+								<Button
+									sx={{ padding: 0, minWidth: "35px", height: "35px" }}
 									onClick={() => handleDeleteContact(contact.id)}>
 									<CiCircleRemove size={30} />
-								</button>
-							</li>
+								</Button>
+							</ListItem>
 						)
 					}
-				</ul>
+				</List>
 			}
 		</>
 	)

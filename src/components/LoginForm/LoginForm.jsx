@@ -2,6 +2,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { logIn } from "redux/auth/operations";
 import { Input, FormLabel, FormGroup, Button } from '@mui/material';
+import { groupStyles, inpitStyles, stylesButton, form } from "constants/formStyles";
 
 const required = { required: true };
 
@@ -15,8 +16,8 @@ export const LoginForm = () => {
 	};
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-			<FormGroup>
+		<form style={form} onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+			<FormGroup sx={groupStyles}>
 				<FormLabel>
 					<Controller
 						defaultValue=""
@@ -25,6 +26,7 @@ export const LoginForm = () => {
 						rules={required}
 						render={({ field }) =>
 							<Input
+								sx={inpitStyles}
 								type="email"
 								placeholder="Email"
 								{...field}
@@ -40,6 +42,7 @@ export const LoginForm = () => {
 						rules={required}
 						render={({ field }) =>
 							<Input
+								sx={inpitStyles}
 								type="password"
 								placeholder="Password"
 								{...field}
@@ -48,7 +51,7 @@ export const LoginForm = () => {
 					{errors.password && <span>This field is required</span>}
 				</FormLabel>
 			</FormGroup>
-			<Button type="submit">Log In</Button>
+			<Button sx={stylesButton} type="submit">Log In</Button>
 		</form>
 	)
 }
