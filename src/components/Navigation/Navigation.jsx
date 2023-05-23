@@ -4,9 +4,8 @@ import { NavLink, useLocation } from "react-router-dom";
 
 export const Navigation = () => {
 	const { isLoggedIn } = useAuth();
-	
 	const { pathname } = useLocation();
-	console.log(pathname);
+
 	return (
 		<nav className={sass.nav}>
 			<NavLink className={pathname === "/" ? sass.navLinkActive : sass.navLink} to="/">Home</NavLink>

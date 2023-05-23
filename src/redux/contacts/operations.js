@@ -62,3 +62,23 @@ export const deleteContact = createAsyncThunk(
 		}
 	}
 );
+
+export const patchContact = createAsyncThunk(
+	"auth/patchContact",
+	async (currentContact, thunkAPI) => {
+		const { auth } = thunkAPI.getState();
+		const token = auth.token;
+		try {
+			const body = {
+				name: currentContact.name,
+				number: currentContact.number,
+			}
+			const response = await axios.patch(`/contacts/${currentContact.id}`, body, {
+					headers: { Authorization: token }
+				});
+			return response.data;
+		} catch (error) {
+			return thunkAPI.rejectWithValue(error.message);
+		}
+	}
+);

@@ -66,6 +66,7 @@ export const fetchCurrentUser = createAsyncThunk(
 			const { data } = await axios.get(endpoints.CURRENT);
 			return data;
 		} catch (error) {
+			return thunkAPI.rejectWithValue(auth)
 		}
 	}
 );
