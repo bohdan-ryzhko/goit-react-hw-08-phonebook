@@ -17,8 +17,6 @@ export const LoginForm = () => {
 		reset();
 	};
 
-	console.log(errors)
-
 	const isDisabled = Object.keys(errors).length > 0;
 
 	return (

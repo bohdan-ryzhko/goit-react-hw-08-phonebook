@@ -3,7 +3,7 @@ import { inpitStyles } from "constants/formStyles"
 
 export const CustomInput = ({ label, type, field, error }) => (
 	<FormControl sx={inpitStyles}>
-		<InputLabel htmlFor={label}>{label}</InputLabel>
+		<InputLabel error={error} htmlFor={label}>{label}</InputLabel>
 		<OutlinedInput id={label} error={error} type={type} label={label} {...field} />
 	</FormControl>
 )

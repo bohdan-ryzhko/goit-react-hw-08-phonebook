@@ -24,29 +24,29 @@ export const App = () => {
       <p>Refreshing page...</p>
     ) : (
       <>
-      <AppBar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route
-            path="/register"
-            element={
-              <RestrictedRoute redirectTo="/contacts" component={<Register />} />
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <RestrictedRoute redirectTo="/contacts" component={<Login />} />
-            }
-          />
-          <Route
-            path="/contacts"
-            element={
-              <PrivateRoute redirectTo="/login" component={<Contacts />} />
-            }
-          />
-        </Routes>
-      </>
+         <AppBar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/register"
+              element={
+                <RestrictedRoute redirectTo="/contacts" component={<Register />} />
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <RestrictedRoute redirectTo="/contacts" component={<Login />} />
+              }
+            />
+            <Route
+              path="/contacts"
+              element={
+                <PrivateRoute redirectTo="/login" component={<Contacts />} />
+              }
+            />
+          </Routes>
+        </>
     )
   );
 };

@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export const fetchContacts = createAsyncThunk(
 	"contacts/fetchContacts",
@@ -54,6 +55,7 @@ export const deleteContact = createAsyncThunk(
 					headers: { Authorization: token }
 				}
 			);
+			toast.info("Contact removed!");
 			return resoponse.data;
 		} catch (error) {
 			return thunkAPI.rejectWithValue(error.message);
