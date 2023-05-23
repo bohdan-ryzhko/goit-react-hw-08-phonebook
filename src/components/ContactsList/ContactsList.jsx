@@ -1,4 +1,5 @@
-import { useAuth } from "hooks/useAuth"
+import sass from "./ContactsList.module.scss";
+import { useAuth } from "hooks/useAuth";
 import { useDispatch } from "react-redux";
 import { deleteContact } from "redux/contacts/operations";
 import { List, Modal } from '@mui/material';
@@ -6,6 +7,7 @@ import { Contact } from "components/Contact/Contact";
 import { getFilteredContacts } from "services/getFilteredContacts";
 import { RewriteForm } from "components/RewriteForm/RewriteForm";
 import { useEffect, useState } from "react";
+import { CiCircleRemove } from "react-icons/ci";
 
 export const ContactsList = ({ openRewriteModal, setOpenRewriteModal }) => {
 	const { contacts, filter, isCreatingLoad } = useAuth();
@@ -62,26 +64,17 @@ export const ContactsList = ({ openRewriteModal, setOpenRewriteModal }) => {
 				aria-describedby="parent-modal-description"
 				sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
 			>
-				<div style={{
-					width: "300px",
-					height: "500px",
-					background: "#fff",
-					borderRadius: "10px",
-					display: "flex",
-					justifyContent: "center",
-					alignItems: "center",
-					gap: "10px",
-					padding: "0 10px",
-					flexDirection: "column"
-				}}>
-					{
-						currentContact &&
-						<>
-							<p>Name: {currentContact.name}</p>
-							<p>Number: {currentContact.number}</p>
-						</>
-					}
-					<RewriteForm currentContact={currentContact} />
+				<div className={sass.modalBody}>
+					<button
+						onClick={() => handleToggleModal()}
+						className={sass.closeModal}>
+						<CiCircleRemove size={30} />
+					</button>
+					<RewriteForm
+						name={currentContact?.name}
+						number={currentContact?.number}
+						currentContact={currentContact}
+					/>
 				</div>
 			</Modal>
 		</>

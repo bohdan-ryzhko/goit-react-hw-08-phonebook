@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import { patchContact } from "redux/contacts/operations";
 const required = { required: true };
 
-export const RewriteForm = ({ currentContact }) => {
+export const RewriteForm = ({ currentContact, name, number }) => {
 	const { control, reset, handleSubmit, formState: { errors } } = useForm();
 	const { isCreatingLoad, contacts } = useAuth();
 	const dispatch = useDispatch();
@@ -32,7 +32,7 @@ export const RewriteForm = ({ currentContact }) => {
 			<FormGroup sx={groupStyles}>
 				<FormLabel>
 					<Controller
-						defaultValue=""
+						defaultValue={name ? name : ""}
 						name="name"
 						control={control}
 						rules={required}
@@ -47,7 +47,7 @@ export const RewriteForm = ({ currentContact }) => {
 				</FormLabel>
 				<FormLabel>
 					<Controller
-						defaultValue=""
+						defaultValue={number ? number : ""}
 						name="number"
 						control={control}
 						rules={required}
