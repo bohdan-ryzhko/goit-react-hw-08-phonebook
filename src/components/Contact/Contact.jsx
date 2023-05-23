@@ -1,6 +1,6 @@
 import { Button, ListItem, Typography } from "@mui/material";
 import { CiCircleRemove } from "react-icons/ci";
-import { AiFillEdit } from "react-icons/ai";
+// import { AiFillEdit } from "react-icons/ai";
 
 const contactStyles = {
 	flexBasis: "100%"
@@ -14,13 +14,14 @@ export const Contact = ({ contact, onClick }) => {
 			<Button
 				sx={{ padding: 0, minWidth: "35px", height: "35px" }}
 				onClick={onClick}>
-				<AiFillEdit size={25} />
-			</Button>
-			<Button
-				sx={{ padding: 0, minWidth: "35px", height: "35px" }}
-				onClick={onClick}>
 				<CiCircleRemove size={30} />
 			</Button>
 		</ListItem>
 	)
 }
+
+{/* <Button
+				sx={{ padding: 0, minWidth: "35px", height: "35px" }}
+				onClick={onClick}>
+				<AiFillEdit size={25} />
+			</Button> */}
