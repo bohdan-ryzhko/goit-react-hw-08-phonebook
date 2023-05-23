@@ -5,16 +5,23 @@ import { groupStyles, stylesButton } from "constants/formStyles";
 import { useAuth } from "hooks/useAuth";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { patchContact } from "redux/contacts/operations";
 const required = { required: true };
 
 export const RewriteForm = ({ currentContact }) => {
 	const { control, reset, handleSubmit, formState: { errors } } = useForm();
-	const { isCreatingLoad } = useAuth();
+	const { isCreatingLoad, contacts } = useAuth();
 	const dispatch = useDispatch();
 
 	const onSubmit = (data) => {
-		dispatch(patchContact({ id: currentContact.id, ...data}));
+		const repeatName = contacts.some(contact => contact.name === data.name);
+		if (repeatName) {
+			toast.error(`${data.name} already in the contact book`);
+			return;
+		}
+		dispatch(patchContact({ id: currentContact.id, ...data }));
+		reset();
 	}
 
 	const isDisabled = Object.keys(errors).length > 0;

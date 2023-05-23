@@ -68,7 +68,9 @@ export const patchContact = createAsyncThunk(
 	async (currentContact, thunkAPI) => {
 		const { auth } = thunkAPI.getState();
 		const token = auth.token;
+
 		try {
+			if (!token) return thunkAPI.rejectWithValue(auth);
 			const body = {
 				name: currentContact.name,
 				number: currentContact.number,
