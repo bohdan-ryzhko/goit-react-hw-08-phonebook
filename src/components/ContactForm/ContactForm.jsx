@@ -19,11 +19,10 @@ export const ContactForm = () => {
 	const onSubmit = (data) => {
 		const repeatName = contacts.some(contact => contact.name === data.name);
 		if (repeatName) return toast.error(`${data.name} already in your contacts`)
+		if (isErrors) return;
 		dispatch(createContact(data));
-		if (!isErrors) {
-			toast.success(`${data.name} added in your contacts`);
-			reset();
-		}
+		toast.success(`${data.name} added in your contacts`);
+		reset();
 	}
 
 	return (
