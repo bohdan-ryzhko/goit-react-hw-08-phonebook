@@ -62,7 +62,7 @@ export const RegisterForm = () => {
 						{errors.password && <ErrorText text="Password field is required"/>}
 					</FormLabel>
 				</FormGroup>
-				<LoadingButton loading={isLoadingRegister} disabled={isDisabled} sx={stylesButton} type="submit">Add Contact</LoadingButton>
+				<LoadingButton loading={isLoadingRegister} disabled={isDisabled} sx={stylesButton} type="submit">Register</LoadingButton>
 			</form>
 	)
 }
