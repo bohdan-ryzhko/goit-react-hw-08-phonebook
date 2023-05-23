@@ -35,8 +35,8 @@ export const ContactForm = () => {
 						rules={required}
 						render={({ field }) =>
 							<FormControl sx={{ width: "100%" }} variant="standard">
-								<InputLabel error={errors.name} htmlFor="Name">Name</InputLabel>
-								<Input error={errors.name} id="Name" {...field} />
+								<InputLabel error={Boolean(errors.name)} htmlFor="Name">Name</InputLabel>
+								<Input error={Boolean(errors.name)} id="Name" {...field} />
 							</FormControl>
 						}
 					/>
@@ -50,8 +50,8 @@ export const ContactForm = () => {
 						rules={required}
 						render={({ field }) =>
 							<FormControl sx={{ width: "100%" }} variant="standard">
-								<InputLabel error={errors.number} htmlFor="Phone">Phone</InputLabel>
-								<Input error={errors.number} id="Phone" {...field} />
+								<InputLabel error={Boolean(errors.number)} htmlFor="Phone">Phone</InputLabel>
+								<Input error={Boolean(errors.number)} id="Phone" {...field} />
 							</FormControl>
 						}
 					/>
