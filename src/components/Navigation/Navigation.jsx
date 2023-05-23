@@ -1,15 +1,18 @@
 import sass from "./Navigation.module.scss";
 import { useAuth } from "hooks/useAuth";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 export const Navigation = () => {
 	const { isLoggedIn } = useAuth();
+	
+	const { pathname } = useLocation();
+	console.log(pathname);
 	return (
 		<nav className={sass.nav}>
-			<NavLink to="/">Home</NavLink>
+			<NavLink className={pathname === "/" ? sass.navLinkActive : sass.navLink} to="/">Home</NavLink>
 			{
 				isLoggedIn &&
-				<NavLink to="/contacts">Contacts</NavLink>
+				<NavLink className={pathname === "/contacts" ? sass.navLinkActive : sass.navLink} to="/contacts">Contacts</NavLink>
 			}
 		</nav>
 	)

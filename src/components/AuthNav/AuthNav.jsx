@@ -1,11 +1,14 @@
 import sass from "./AuthNav.module.scss";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 export const AuthNav = () => {
+
+	const { pathname } = useLocation();
+
 	return (
 		<div className={sass.AuthNav}>
-			<NavLink to="/register">Register</NavLink>
-			<NavLink to="/login">Log In</NavLink>
+			<NavLink className={pathname === "/register" ? sass.linkActive : sass.link} to="/register">Register</NavLink>
+			<NavLink className={pathname === "/login" ? sass.linkActive : sass.link} to="/login">Log In</NavLink>
 		</div>
 	)
 };
