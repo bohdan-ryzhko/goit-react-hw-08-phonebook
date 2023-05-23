@@ -1,17 +1,19 @@
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { logIn } from "redux/auth/operations";
-import { FormLabel, FormGroup, Button } from '@mui/material';
+import { FormLabel, FormGroup } from '@mui/material';
 import { groupStyles, stylesButton, form } from "constants/formStyles";
 import { CustomInput } from "components/CustomInput/CustomInput";
 import { ErrorText } from "components/ErrorText/ErrorText";
+import { LoadingButton } from "@mui/lab";
+import { useAuth } from "hooks/useAuth";
 
 const required = { required: true };
 
 export const LoginForm = () => {
 	const dispatch = useDispatch();
 	const { control, reset, handleSubmit, formState: { errors } } = useForm();
-
+	const { isLoadingRegister } = useAuth();
 	const onSubmit = data => {
 		dispatch(logIn(data));
 		reset();
@@ -47,7 +49,7 @@ export const LoginForm = () => {
 					{errors.password && <ErrorText text="Password field is required" />}
 				</FormLabel>
 			</FormGroup>
-			<Button disabled={isDisabled} sx={stylesButton} type="submit">Log In</Button>
+			<LoadingButton loading={isLoadingRegister} disabled={isDisabled} sx={stylesButton} type="submit">Add Contact</LoadingButton>
 		</form>
 	)
 }

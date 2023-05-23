@@ -1,17 +1,19 @@
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { registerUser } from "redux/auth/operations";
-import { FormLabel, FormGroup, Button } from '@mui/material';
+import { FormLabel, FormGroup } from '@mui/material';
 import { groupStyles, stylesButton, form } from "constants/formStyles";
 import { CustomInput } from "components/CustomInput/CustomInput";
 import { ErrorText } from "components/ErrorText/ErrorText";
+import { LoadingButton } from "@mui/lab";
+import { useAuth } from "hooks/useAuth";
 
 const required = { required: true };
 
 export const RegisterForm = () => {
 	const dispatch = useDispatch();
 	const { control, reset, handleSubmit, formState: { errors } } = useForm();
-
+	const { isLoadingRegister } = useAuth();
 	const onSubmit = data => {
 		console.log(data);
 		dispatch(registerUser(data));
@@ -60,7 +62,7 @@ export const RegisterForm = () => {
 						{errors.password && <ErrorText text="Password field is required"/>}
 					</FormLabel>
 				</FormGroup>
-				<Button disabled={isDisabled} sx={stylesButton} type="submit">Register</Button>
+				<LoadingButton loading={isLoadingRegister} disabled={isDisabled} sx={stylesButton} type="submit">Add Contact</LoadingButton>
 			</form>
 	)
 }

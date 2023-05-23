@@ -1,17 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { logIn, logOut, registerUser, fetchCurrentUser } from "./operations";
 
-const handlePending = state => state;
+const handlePending = state => {
+	state.isLoadingRegister = true;
+};
 
 const handleFulfilled = (state, { payload }) => {
+	state.isLoadingRegister = false;
 	state.user = payload.user;
 	state.token = payload.token;
 	state.isLoggedIn = true;
 }
 
-const handleRejected = (state, { payload }) => state;
+const handleRejected = (state) => {
+	state.isLoadingRegister = false;
+};
 
 const handleLogoutFulfilled = state => {
+	state.isLoadingRegister = false;
 	state.user = { name: null, email: null }
 	state.token = null
 	state.isLoggedIn = false
@@ -25,19 +31,24 @@ const authSlice = createSlice({
 		token: null,
 		isLoggedIn: false,
 		isRefreshing: false,
+		isLoadingRegister: false,
 	},
 	extraReducers: builder =>
 		builder
 			.addCase(registerUser.pending, handlePending)
 			.addCase(registerUser.fulfilled, handleFulfilled)
 			.addCase(registerUser.rejected, handleRejected)
+			.addCase(logIn.pending, handlePending)
 			.addCase(logIn.fulfilled, handleFulfilled)
+			.addCase(logOut.pending, handlePending)
 			.addCase(logOut.fulfilled, handleLogoutFulfilled)
 			.addCase(fetchCurrentUser.fulfilled, (state, action) => {
+				state.isLoadingRegister = false;
 				state.user = action.payload;
 				state.isLoggedIn = true;
 			})
-			.addCase(fetchCurrentUser.rejected, (state, action) => {
+			.addCase(fetchCurrentUser.rejected, (state) => {
+				state.isLoadingRegister = false;
 				state.user = { name: null, email: null }
 				state.token = null;
 				state.isLoggedIn = false;

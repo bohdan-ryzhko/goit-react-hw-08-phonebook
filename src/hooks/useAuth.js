@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import { selectIsLoggedIn, selectIsRefreshing, selectUser } from "redux/auth/selectors";
-import { selectContacts, selectContactsError, selectContactsLoad } from "redux/contacts/selectors";
+import { selectIsLoadingRegister, selectIsLoggedIn, selectIsRefreshing, selectUser } from "redux/auth/selectors";
+import { selectContacts, selectContactsError, selectContactsLoad, selectIsCreatingLoad } from "redux/contacts/selectors";
 import { selectFilter } from "redux/filter/selectors";
 
 export const useAuth = () => ({
@@ -11,4 +11,6 @@ export const useAuth = () => ({
 	isLoadContacts: useSelector(selectContactsLoad),
 	errorContacts: useSelector(selectContactsError),
 	filter: useSelector(selectFilter),
+	isCreatingLoad: useSelector(selectIsCreatingLoad),
+	isLoadingRegister: useSelector(selectIsLoadingRegister),
 });

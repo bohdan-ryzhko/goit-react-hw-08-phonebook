@@ -1,6 +1,7 @@
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { Input, FormLabel, FormGroup, Button, FormControl, InputLabel } from '@mui/material';
+import { Input, FormLabel, FormGroup, FormControl, InputLabel } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
 import { createContact } from "redux/contacts/operations";
 import { groupStyles, stylesButton, form } from "constants/formStyles";
 import { ErrorText } from "components/ErrorText/ErrorText";
@@ -9,7 +10,7 @@ import { useAuth } from "hooks/useAuth";
 const required = { required: true };
 
 export const ContactForm = () => {
-	const { contacts } = useAuth();
+	const { contacts, isCreatingLoad } = useAuth();
 	const dispatch = useDispatch();
 	const { control, reset, handleSubmit, formState: { errors } } = useForm();
 
@@ -57,7 +58,7 @@ export const ContactForm = () => {
 					{errors.number && <ErrorText text="Phone field is required" />}
 				</FormLabel>
 			</FormGroup>
-			<Button disabled={isDisabled} sx={stylesButton} type="submit">Add Contact</Button>
+			<LoadingButton loading={isCreatingLoad} disabled={isDisabled} sx={stylesButton} type="submit">Add Contact</LoadingButton>
 		</form>
 	)
 }
