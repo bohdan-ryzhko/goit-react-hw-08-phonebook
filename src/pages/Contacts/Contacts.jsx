@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { Slide, ToastContainer } from "react-toastify";
 import { fetchContacts } from "redux/contacts/operations";
 import "react-toastify/dist/ReactToastify.css";
+import { Filter } from "components/Filter/Filter";
 
 export const Contacts = () => {
 	const dispatch = useDispatch();
@@ -23,6 +24,7 @@ export const Contacts = () => {
 			<Container>
 				<Title title={`${name}, your contacts`} />
 				<ContactForm />
+				<Filter />
 				<ContactsList />
 			</Container>
 			<ToastContainer
