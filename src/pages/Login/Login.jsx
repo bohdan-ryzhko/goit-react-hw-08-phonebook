@@ -6,7 +6,7 @@ export const Login = () => {
 	return (
 		<div>
 			<Container>
-				<Title title="Login" />
+				<Title title="Log In" />
 				<LoginForm />
 			</Container>
 		</div>
