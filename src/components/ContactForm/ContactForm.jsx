@@ -14,15 +14,17 @@ export const ContactForm = () => {
 	const dispatch = useDispatch();
 	const { control, reset, handleSubmit, formState: { errors } } = useForm();
 
+	const isErrors = Object.keys(errors).length > 0;
+
 	const onSubmit = (data) => {
 		const repeatName = contacts.some(contact => contact.name === data.name);
 		if (repeatName) return toast.error(`${data.name} already in your contacts`)
 		dispatch(createContact(data));
-		toast.success(`${data.name} added in your contacts`);
-		reset();
+		if (!isErrors) {
+			toast.success(`${data.name} added in your contacts`);
+			reset();
+		}
 	}
-
-	const isDisabled = Object.keys(errors).length > 0;
 
 	return (
 		<form style={form} onSubmit={handleSubmit(onSubmit)} autoComplete="off">
@@ -58,7 +60,7 @@ export const ContactForm = () => {
 					{errors.number && <ErrorText text="Phone field is required" />}
 				</FormLabel>
 			</FormGroup>
-			<LoadingButton loading={isCreatingLoad} disabled={isDisabled} sx={stylesButton} type="submit">Add Contact</LoadingButton>
+			<LoadingButton loading={isCreatingLoad} disabled={isErrors} sx={stylesButton} type="submit">Add Contact</LoadingButton>
 		</form>
 	)
 }
