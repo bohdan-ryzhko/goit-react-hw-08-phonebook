@@ -15,7 +15,6 @@ export const RegisterForm = () => {
 	const { control, reset, handleSubmit, formState: { errors } } = useForm();
 	const { isLoadingRegister } = useAuth();
 	const onSubmit = data => {
-		console.log(data);
 		dispatch(registerUser(data));
 		reset();
 	};

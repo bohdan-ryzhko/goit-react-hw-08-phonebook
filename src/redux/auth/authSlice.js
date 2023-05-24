@@ -12,10 +12,6 @@ const handleFulfilled = (state, { payload }) => {
 	state.isLoggedIn = true;
 }
 
-const handleRejected = (state) => {
-	state.isLoadingRegister = false;
-};
-
 const handleLogoutFulfilled = state => {
 	state.isLoadingRegister = false;
 	state.user = { name: null, email: null };
@@ -24,7 +20,7 @@ const handleLogoutFulfilled = state => {
 	state.isRefreshing = false;
 }
 
-const handleRejectedLog = (state) => {
+const handleRejected = (state) => {
 	state.isLoadingRegister = false;
 	state.user = { name: null, email: null }
 	state.token = null;
@@ -49,10 +45,10 @@ const authSlice = createSlice({
 			.addCase(registerUser.rejected, handleRejected)
 			.addCase(logIn.pending, handlePending)
 			.addCase(logIn.fulfilled, handleFulfilled)
-			.addCase(logIn.rejected, handleRejectedLog)
+			.addCase(logIn.rejected, handleRejected)
 			.addCase(logOut.pending, handlePending)
 			.addCase(logOut.fulfilled, handleLogoutFulfilled)
-			.addCase(logOut.rejected, handleRejectedLog)
+			.addCase(logOut.rejected, handleRejected)
 			.addCase(fetchCurrentUser.fulfilled, (state, action) => {
 				state.isLoadingRegister = false;
 				state.user = action.payload;

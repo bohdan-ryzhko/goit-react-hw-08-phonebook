@@ -10,6 +10,8 @@ import { Contacts } from "pages/Contacts/Contacts";
 import { PrivateRoute } from "./PrivateRoute";
 import { RestrictedRoute } from "./RestrictedRoute";
 import { useAuth } from "hooks/useAuth";
+import { Slide, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -46,6 +48,18 @@ export const App = () => {
               }
             />
           </Routes>
+          <ToastContainer
+            position="top-right"
+            autoClose={4000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            pauseOnHover
+            theme="colored"
+            transition={Slide}
+          />
         </>
     )
   );

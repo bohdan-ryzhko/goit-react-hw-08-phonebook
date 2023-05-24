@@ -5,9 +5,7 @@ import { Title } from "components/Title/Title";
 import { useAuth } from "hooks/useAuth";
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux";
-import { Slide, ToastContainer } from "react-toastify";
 import { fetchContacts } from "redux/contacts/operations";
-import "react-toastify/dist/ReactToastify.css";
 import { Filter } from "components/Filter/Filter";
 
 export const Contacts = () => {
@@ -28,18 +26,6 @@ export const Contacts = () => {
 				<Filter />
 				<ContactsList openRewriteModal={openRewriteModal} setOpenRewriteModal={setOpenRewriteModal} />
 			</Container>
-			<ToastContainer
-				position="top-right"
-				autoClose={4000}
-				hideProgressBar={false}
-				newestOnTop={false}
-				closeOnClick
-				rtl={false}
-				pauseOnFocusLoss
-				pauseOnHover
-				theme="colored"
-				transition={Slide}
-			/>
 		</section>
 	)
 }
