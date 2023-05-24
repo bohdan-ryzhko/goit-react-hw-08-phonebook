@@ -18,7 +18,7 @@ export const fetchContacts = createAsyncThunk(
 			);
 			return resoponse.data;
 		} catch (error) {
-			console.warn(error)
+			toast.error(error.message);
 			return thunkAPI.rejectWithValue(error.message);
 		}
 	}
@@ -36,8 +36,10 @@ export const createContact = createAsyncThunk(
 					headers: { Authorization: token }
 				}
 			);
+			toast.success(`${resoponse.data.name} added in your contacts`);
 			return resoponse.data;
 		} catch (error) {
+			toast.error(error.message);
 			return thunkAPI.rejectWithValue(error.message);
 		}
 	}
@@ -58,6 +60,7 @@ export const deleteContact = createAsyncThunk(
 			toast.info("Contact removed!");
 			return resoponse.data;
 		} catch (error) {
+			toast.error(error.message);
 			return thunkAPI.rejectWithValue(error.message);
 		}
 	}
@@ -76,10 +79,12 @@ export const patchContact = createAsyncThunk(
 				number: currentContact.number,
 			}
 			const response = await axios.patch(`/contacts/${currentContact.id}`, body, {
-					headers: { Authorization: token }
-				});
+				headers: { Authorization: token }
+			});
+			toast.success(`${response.data.name} - contact change!`);
 			return response.data;
 		} catch (error) {
+			toast.error(error.message);
 			return thunkAPI.rejectWithValue(error.message);
 		}
 	}

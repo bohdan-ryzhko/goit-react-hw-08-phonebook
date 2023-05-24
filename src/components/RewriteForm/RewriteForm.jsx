@@ -21,7 +21,6 @@ export const RewriteForm = ({ currentContact, name, number }) => {
 			return;
 		}
 		dispatch(patchContact({ id: currentContact.id, ...data }));
-		toast.success(`${data.name} - contact change!`);
 		reset();
 	}
 

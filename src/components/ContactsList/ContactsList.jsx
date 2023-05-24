@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { CiCircleRemove } from "react-icons/ci";
 
 export const ContactsList = ({ openRewriteModal, setOpenRewriteModal }) => {
-	const { contacts, filter, isCreatingLoad } = useAuth();
+	const { contacts, filter, isCreatingLoad, errorContacts } = useAuth();
 	const dispatch = useDispatch();
 	const [currentContact, setCurrentContact] = useState(null);
 
@@ -30,10 +30,10 @@ export const ContactsList = ({ openRewriteModal, setOpenRewriteModal }) => {
 	}
 
 	useEffect(() => {
-		if (!isCreatingLoad) {
+		if (!isCreatingLoad && !errorContacts) {
 			setOpenRewriteModal(false);
 		}
-	}, [isCreatingLoad, setOpenRewriteModal]);
+	}, [isCreatingLoad, setOpenRewriteModal, errorContacts]);
 
 	const filteredContactsByName = getFilteredContacts(filter, contacts);
 

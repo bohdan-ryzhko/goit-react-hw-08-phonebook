@@ -63,6 +63,10 @@ const contactsSlice = createSlice({
 				const indexContact = state.items.findIndex(contact => contact.id === action.payload.id);
 				state.items.splice(indexContact, 1, action.payload);
 			})
+			.addCase(patchContact.rejected, (state, action) => {
+				state.isCreatingLoad = false;
+				state.error = action.payload;
+			})
 	}
 });
 

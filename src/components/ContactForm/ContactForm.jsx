@@ -21,7 +21,6 @@ export const ContactForm = () => {
 		if (repeatName) return toast.error(`${data.name} already in your contacts`)
 		if (isErrors) return;
 		dispatch(createContact(data));
-		toast.success(`${data.name} added in your contacts`);
 		reset();
 	}
 
